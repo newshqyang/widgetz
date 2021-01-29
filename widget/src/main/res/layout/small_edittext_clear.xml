@@ -18,7 +18,6 @@
         android:id="@+id/et"
         android:layout_weight="1"
         android:layout_width="0dp"
-        tools:text="测试123123测试123123测试123123测试123123测试123123测试123123测试123123测试123123测试123123测试123123测试123123测试123123测试123123测试123123"
         android:ellipsize="end"
         android:singleLine="true"
         android:maxLines="1"
