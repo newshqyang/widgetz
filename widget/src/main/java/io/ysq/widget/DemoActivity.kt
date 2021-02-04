@@ -8,7 +8,7 @@ class DemoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.demo_activity)
 
-        ClearEditTextKt(this)
-
+        ClearEditText(this)
+        SwipeMenuLayout(this)
     }
 }
