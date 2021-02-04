@@ -36,6 +36,16 @@ public class ClearEditText extends LinearLayout {
         this.text = text;
     }
 
+    private boolean clearVisibleGone;
+
+    public boolean isClearVisibleGone() {
+        return clearVisibleGone;
+    }
+
+    public void setClearVisibleGone(boolean clearVisibleGone) {
+        this.clearVisibleGone = clearVisibleGone;
+    }
+
     private EditText mEt;
     private ImageView mClearIv;
 
@@ -50,9 +60,29 @@ public class ClearEditText extends LinearLayout {
             index = a.getIndex(i);
             if (index == R.styleable.ClearEditText_text) {
                 text = a.getString(index);
+            } else if (index == R.styleable.ClearEditText_clearVisibleGone) {
+                clearVisibleGone = a.getBoolean(index, false);
             }
         }
 
         mEt.setText(text);
+        if (clearVisibleGone) {
+            mClearIv.setVisibility(VISIBLE);
+        } else {
+            mClearIv.setVisibility(GONE);
+        }
     }
+
+    public void hideClear() {
+        mClearIv.setVisibility(GONE);
+    }
+
+    public void showClear() {
+        mClearIv.setVisibility(VISIBLE);
+    }
+
+    public void setClearVisible(int visible) {
+        mClearIv.setVisibility(visible);
+    }
+
 }
