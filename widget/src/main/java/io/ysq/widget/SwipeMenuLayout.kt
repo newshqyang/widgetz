@@ -32,6 +32,13 @@ class SwipeMenuLayout @JvmOverloads constructor(context: Context, attrSet: Attri
 
     companion object {
         private var mViewCache: SwipeMenuLayout? = null //存储当前正在滑动的View
+        fun setViewCache(view: SwipeMenuLayout) {
+            mViewCache = view
+        }
+
+        fun setNull() {
+            mViewCache = null
+        }
     }
 
 
@@ -313,7 +320,7 @@ class SwipeMenuLayout @JvmOverloads constructor(context: Context, attrSet: Attri
 
     private fun smoothExpand() {
         //展开就加入ViewCache
-        mViewCache = this@SwipeMenuLayout
+        setViewCache(this)
         //侧滑菜单展开，屏蔽content长按
         mContentView?.let {
             it.isLongClickable = true
@@ -338,7 +345,7 @@ class SwipeMenuLayout @JvmOverloads constructor(context: Context, attrSet: Attri
      * 平滑关闭
      */
     private fun smoothClose() {
-        mViewCache == null
+        setNull()
 
         //侧滑菜单展开，屏蔽content长按
         mContentView?.let { it.isLongClickable = true }
@@ -404,7 +411,7 @@ class SwipeMenuLayout @JvmOverloads constructor(context: Context, attrSet: Attri
     override fun onDetachedFromWindow() {
         if (mViewCache == this) {
             mViewCache?.smoothClose()
-            mViewCache == null
+            setNull()
         }
         super.onDetachedFromWindow()
     }
